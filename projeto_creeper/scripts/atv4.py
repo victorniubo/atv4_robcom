@@ -23,9 +23,18 @@ cv_image = None
 media = []
 centro = []
 
+print("Escolha uma das cores abaixo.")
+cor = input("Azul: 0; Verde: 1; Roxo: 2. -> ")
+
+cor = int(cor)
+
 roxo = "#4c015b"
 verde = "#006507"
 azul = "#06355c"
+
+lista_cores = [azul, verde, roxo]
+
+dist = 0
 
 atraso = 1.5E9 # 1 segundo e meio. Em nanossegundos
 
@@ -55,7 +64,7 @@ def roda_todo_frame(imagem):
         antes = time.clock()
         cv_image = bridge.compressed_imgmsg_to_cv2(imagem, "bgr8")
         #cv_image = cv2.flip(cv_image, -1)
-        media, centro, maior_area =  cormodule_mod.identifica_cor(cv_image,verde)
+        media, centro, maior_area =  cormodule_mod.identifica_cor(cv_image,lista_cores[cor])
         depois = time.clock()
         cv2.imshow("Camera", cv_image)
     except CvBridgeError as e:
